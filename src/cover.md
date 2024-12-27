@@ -1,5 +1,3 @@
-
 <div style="text-align: center; padding-top: 50px;">
-
-![cover](./images/BOOKCOVER.png)
+  <img src="./images/BOOKCOVER.png" alt="cover" />
 </div>
