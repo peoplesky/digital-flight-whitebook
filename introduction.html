@@ -1,0 +1,218 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>引言 - 数字飞行白皮书</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">数字飞行白皮书</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="第一章引言"><a class="header" href="#第一章引言">第一章：引言</a></h1>
+<p>航空的历史是一部创新和演变的历史。飞机技术的进步需要政策、程序和基础设施的自然发展，以实现创新航空业的好处。随着早期飞机的演变，为了确保安全，制定标准操作规范的需求变得必要。从基蒂霍克第一次飞行到需要机场交通管制来适应竞争需求，仅仅过去了二十年。在六十年的时间里，航空从首次飞行发展到超音速旅行。飞机技术受到军事创新的驱动，这些创新很快被用于民用，并创造了对明确定义的监管框架的需求。</p>
+<p>早期导航依赖于对地面的视觉参考，飞机也通过视觉来避免彼此。随着时间的推移，目视飞行规则（VFR）创建了有组织的操作实践，以支持飞行员看到并避开其他飞机并预测彼此的行动。对导航和交通冲突的视觉手段的依赖将VFR下的操作限制在目视气象条件（VMC）期间。随着飞机技术的不断发展，以及航空运输提供的服务向社会展示出越来越高的价值，对视觉手段的依赖阻碍了增长、创新和安全改进。</p>
+<p>利用传感器和仪表获取信息进行导航和交通冲突，是通过制定仪表飞行规则（IFR）实现的，该规则适用于在仪表气象条件（IMC）或VMC下飞行的飞行员。IFR的制定导致了空中交通管制（ATC）从机场扩展到空域，并且它促进了不断发展的标准、技术和程序，以适应不断增长的需求和复杂性。随着飞机的每一次重大创新，基础设施也会有相应的创新，以支持导航、通信、监视以及提供给飞机的其他地面服务。</p>
+<p>今天，数字技术方面的创新为空中交通领域的重大新运营创造了机会。无人驾驶飞行、自主运营以及不受机场基础设施约束的飞行已经吸引了业界的想象。正如技术改进使运营商能够从目视飞行扩展到仪表飞行需要一套适当的飞行规则（IFR）一样，使自然进步到“数字飞行”的改进也需要一套适当的飞行规则，本文中提出的数字飞行规则。</p>
+<h2 id="11-数字飞行和数字飞行规则-dfr"><a class="header" href="#11-数字飞行和数字飞行规则-dfr">1.1. 数字飞行和数字飞行规则 (DFR)</a></h2>
+<p>本文介绍和描述的数字飞行能力与国家空域系统（NAS）中许多新进入者和新兴业务的需求相符并建立在这些概念之上。美国联邦航空管理局（FAA）将无人驾驶飞机系统交通管理（UTM）[1]描述为建立在数字信息共享层上的，以实现安全运营。UTM下的运营商与其他运营商共享飞行意图，并在无需依赖视觉程序或ATC分离服务的情况下协调以解决冲突并安全地分离轨迹。正如将详细描述的那样，数字飞行共享信息共享和运营商管理的隔离的相同原则，尽管规模要大得多。同样，在FAA对城市空中交通（UAM）[2]的描述中，轨迹的战略解决和飞机的战术分离发生在UAM空域结构内，而无需直接的ATC参与；这些功能被分配给UAM运营商、飞行员或UAM服务提供商。在新兴的E类空域交通管理（ETM）[3]概念中，运营商可以选择ATC分离服务或合作的社区隔离，其中运营商最终负责维持与其他飞行器的隔离。这三个新兴概念的共同点是运营商对隔离的责任。他们还共享合作实践、信息共享和数字技术的共同基础，这说明了共同操作模式的新兴机会。这些基础支持了数字飞行成为可以协调这些原本不同的运营的共同运营模式的建议。</p>
+<p>IFR和VFR都不是静态的规则集。随着技术的发展，出现了允许使用新规定的方法。飞机导航从视觉参考地面发展到无线电信标，再到区域导航，再到基于性能的卫星导航，这都需要飞行规则、法规和技术标准的演变。然而，实现数字飞行需要超越对管理IFR和VFR运营模式的现有飞行规则集的添加或修改。两者都不是为没有机上飞行员的飞机设计的。现有规则也没有利用数字操作模式固有的高级传感器、连接性和机载计算能力。技术进步有可能从根本上改变或取代人类在操作飞机中的作用。随着更多飞机和多样化飞机性能的新市场增长受到现有IFR和VFR模式的限制。“在国家空域系统（National Airspace System）中实现航空移动时代的新飞行规则”[4]的出版物提出并证明了开发第三种用于数字启用操作的操作模式的合理性。</p>
+<p>数字飞行规则（DFR）被提议作为新的数字飞行合作运营模式的监管实施，从而为IFR和VFR创建一个正式的补充。结果是任何空域用户（新进入者或现有用户）都可以使用三种常见的操作模式——能够满足适当的性能要求。对于以这种新模式进行的飞行，飞机运营商负责飞行路径安全，包括在VMC和IMC中的交通隔离。为了代替VFR的视觉程序和IFR的ATC分离服务，DFR运营商通过应用合作实践、自我分离、连接的数字技术和自动化信息交换来满足这一安全责任。</p>
+<p>正如IFR和VFR操作可以在同一空域中共存一样，DFR被设想为与IFR和VFR共享空域，而不会中断这些操作，从而消除了为DFR飞行隔离空域的需求。这种集成是通过直接嵌入自动化和程序中的合作实践实现的。现有空域用户将有权选择这三种操作模式中最适合其用途的模式，就像他们今天可以选择IFR和VFR一样。</p>
+<h2 id="12-文档目的和结构"><a class="header" href="#12-文档目的和结构">1.2. 文档目的和结构</a></h2>
+<p>本文档的目的是提供足够详细的数字飞行描述，以便在航空界探索第三种常见操作模式的可取性、可行性和可行性时，促进审议和辩论。它旨在作为讨论的参考框架，使社区能够评估其优点并提出改进和修改建议。该描述侧重于基本要素和高层能力，以帮助未来识别适合数字飞行的特定功能、技术、数据源、架构、程序和性能要求。该文档还从各个利益相关者的角度阐述了数字飞行的优点和预期影响。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="cover.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="basic_concepts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="cover.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="basic_concepts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
