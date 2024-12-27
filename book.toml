@@ -1,0 +1,6 @@
+[book]
+authors = ["peoplesky"]
+language = "zh"
+multilingual = false
+src = "src"
+title = "数字飞行白皮书"

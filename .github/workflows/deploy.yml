@@ -1,0 +1,32 @@
+name: Deploy mdBook to GitHub Pages with Custom Domain
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup mdBook
+      uses: peaceiris/actions-mdbook@v1
+      with:
+        mdbook-version: 'latest'
+
+    - name: Install mdBook
+      run: cargo install mdbook
+      
+    - name: Build book
+      run: mdbook build
+
+    - name: Add custom domain
+      run: echo "whitebook.peoplesky.net" > book/CNAME
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./book
