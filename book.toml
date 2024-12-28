@@ -1,9 +1,9 @@
 [book]
-authors = ["peoplesky"]
+authors = ["jerry.zhang@peopleaviation.net"]
 language = "zh"
 multilingual = false
 src = "src"
-title = "数字飞行白皮书"
+title = "低空数字飞行白皮书"
 
 [output.html]
 git-repo = "https://github.com/peoplesky/whitebook.git"
