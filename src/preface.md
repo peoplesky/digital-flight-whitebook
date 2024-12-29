@@ -48,3 +48,6 @@ PeopleSky 是由人人航空（RenRen Aviation）发起创建的专业机构，�
 
 我们的使命是通过持续的技术创新和行业实践，构建安全、高效、智能、可持续的低空数字飞行生态系统，为低空经济的蓬勃发展提供坚实支撑。
 
+如果需要联系我们，可以通过以下方式：
+
+- 邮箱：[jerry.zhang@peopleaviation.net](mailto:jerryzhang@peopleaviation.net)
